@@ -15,7 +15,7 @@ import com.aliucord.entities.Plugin
 import com.aliucord.fragments.SettingsPage
 
 @AliucordPlugin
-class RevoltCord : Plugin() {
+class TwitterCord : Plugin() {
     @SuppressLint("SetJavaScriptEnabled")
     inner class Trolley(context: Context) : WebView(context) {
         @SuppressLint("ClickableViewAccessibility")
@@ -41,16 +41,16 @@ class RevoltCord : Plugin() {
         }
     }
 
-    lateinit var revolt: Trolley
+    lateinit var twitter: Trolley
 
-    inner class RevoltPage : SettingsPage() {
+    inner class TwitterPage : SettingsPage() {
         override fun onViewBound(view: View) {
             super.onViewBound(view)
             headerBar.visibility = View.GONE
             setPadding(0)
-            revolt = Trolley(view.context)
-            revolt.loadUrl("https://app.revolt.chat")
-            revolt.layoutParams = ViewGroup.LayoutParams(
+            twitter = Trolley(view.context)
+            twitter.loadUrl("https://twittrr.com")
+            twitter.layoutParams = ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT
             )
@@ -59,8 +59,8 @@ class RevoltCord : Plugin() {
     }
 
     override fun start(context: Context) {
-        commands.registerCommand("revolt", "Revolt in Discord lol") {
-            openPageWithProxy(Utils.appActivity, RevoltPage())
+        commands.registerCommand("twitter", "Twitter in Discord lol") {
+            openPageWithProxy(Utils.appActivity, TwitterPage())
             CommandsAPI.CommandResult()
         }
     }
